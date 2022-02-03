@@ -15,8 +15,11 @@ const App = () => {
         {({ signOut, user }) => (
           <>
             <AppBar />
+            {/*
+            TODO: Add router for dashboard and profile views
             <h1>Hello, {user.attributes.email}</h1>
             <button onClick={signOut}>Sign out</button>
+            */}
           </>
         )}
       </Authenticator>

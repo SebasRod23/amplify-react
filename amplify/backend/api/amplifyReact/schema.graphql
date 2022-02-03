@@ -1,0 +1,23 @@
+type Alerts {
+  op_yr: Boolean
+  or_yr: Boolean
+  or_yo: Boolean
+}
+
+type UserInfo @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  email: AWSEmail
+  organization: String
+  region: String
+  alert: Alerts
+  Posts: [Post] @hasMany(indexName: "byUserInfo", fields: ["id"])
+}
+
+type Post @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  position: String
+  region: String
+  organization: String
+  hasVisaSponsor: Boolean
+  userinfoID: ID! @index(name: "byUserInfo")
+}

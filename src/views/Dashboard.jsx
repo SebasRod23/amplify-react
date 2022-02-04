@@ -3,11 +3,11 @@ import { Predicates, SortDirection } from 'aws-amplify';
 import { Button, Flex, Heading, IconAdd, View } from '@aws-amplify/ui-react';
 import { DataStore } from '@aws-amplify/datastore';
 
-import Post from '../ui-components/Post';
+import Post from '../components/Post';
 import { Post as iPost } from '../models';
-import FormModal from '../ui-components/FormModal';
+import FormModal from '../components/FormModal';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState('req' | 'post');
   const [posts, setPosts] = useState([]);
@@ -66,7 +66,12 @@ const Dashboard = () => {
         );
       })}
 
-      <FormModal open={open} handleClose={handleClose} type={type} />
+      <FormModal
+        open={open}
+        handleClose={handleClose}
+        type={type}
+        user={props.user}
+      />
     </View>
   );
 };

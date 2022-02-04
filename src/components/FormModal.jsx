@@ -14,6 +14,7 @@ import {
 import { DataStore } from '@aws-amplify/datastore';
 
 import { Post } from '../models';
+import { UserInfo } from '../models';
 
 const FormModal = (props) => {
   const [org, setOrg] = useState('');
@@ -39,17 +40,21 @@ const FormModal = (props) => {
       return;
     }
 
-    DataStore.save(
-      new Post({
-        position: pos,
-        region: reg,
-        organization: org,
-        hasVisaSponsor: Boolean(hasVisaSponsor),
-        userinfoID: 'a3f4095e-39de-43d2-baf4-f8c16f0f6f4d', //TODO: Check how to get the id of the current user
-      }),
-    ).then(() => {
-      props.handleClose();
-      window.location.reload();
+    DataStore.query(UserInfo, (u) =>
+      u.email('eq', props.user.attributes.email),
+    ).then((userInfo) => {
+      DataStore.save(
+        new Post({
+          position: pos,
+          region: reg,
+          organization: org,
+          hasVisaSponsor: Boolean(hasVisaSponsor),
+          userinfoID: userInfo[0].id,
+        }),
+      ).then(() => {
+        props.handleClose();
+        window.location.reload();
+      });
     });
   };
 
@@ -96,7 +101,7 @@ const FormModal = (props) => {
             <Text>
               {props.type === 'req'
                 ? 'Visa Sponsorship Required?'
-                : 'Would you need a Visa Sponsorship?'}
+                : 'Is there a Visa Sponsorship?'}
             </Text>
             <RadioGroupField
               name='visa'

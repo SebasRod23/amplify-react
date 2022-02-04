@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Button,
-  Divider,
   Flex,
   Heading,
   View,
@@ -13,9 +12,9 @@ import {
   SwitchField,
   Alert,
   Loader,
-} from "@aws-amplify/ui-react";
-import { DataStore } from "@aws-amplify/datastore";
-import { UserInfo } from "../models";
+} from '@aws-amplify/ui-react';
+import { DataStore } from '@aws-amplify/datastore';
+import { UserInfo } from '../models';
 
 const Profile = ({ user }) => {
   const [userInfo, setUserInfo] = useState({});
@@ -23,7 +22,7 @@ const Profile = ({ user }) => {
   useEffect(() => {
     const getUserInfo = async () => {
       const uInfo = await DataStore.query(UserInfo, (u) =>
-        u.email("beginsWith", user.attributes.email)
+        u.email('beginsWith', user.attributes.email),
       );
       setUserInfo(uInfo);
     };
@@ -31,17 +30,17 @@ const Profile = ({ user }) => {
   }, [user.attributes.email]);
 
   return (
-    <View padding="30px 60px">
+    <View padding='30px 60px'>
       {userInfo[0]?.email ? (
         <Tabs>
-          <TabItem title="Profile">
+          <TabItem title='Profile'>
             <ProfileSettings
               user={user}
               userInfo={userInfo[0]}
               setUserInfo={setUserInfo}
             />
           </TabItem>
-          <TabItem title="Alerts">
+          <TabItem title='Alerts'>
             <AlertSettings
               user={user}
               userInfo={userInfo[0]}
@@ -66,20 +65,20 @@ const ProfileSettings = ({ user, userInfo, setUserInfo }) => {
       UserInfo.copyOf(userInfo, (item) => {
         item.organization = organization;
         item.region = region;
-      })
+      }),
     );
     const uInfo = await DataStore.query(UserInfo, (u) =>
-      u.email("beginsWith", user.attributes.email)
+      u.email('beginsWith', user.attributes.email),
     );
     setUserInfo(uInfo);
     setShowAlert(true);
   };
 
   return (
-    <Flex padding="30px 30px" width="50%" direction="column">
+    <Flex padding='30px 30px' width='50%' direction='column'>
       {showAlert ? (
         <Alert
-          variation="success"
+          variation='success'
           isDismissible={true}
           onDismiss={() => setShowAlert(false)}
         >
@@ -88,46 +87,46 @@ const ProfileSettings = ({ user, userInfo, setUserInfo }) => {
       ) : (
         <></>
       )}
-      <Flex alignItems={"center"} justifyContent="space-between">
+      <Flex alignItems={'center'} justifyContent='space-between'>
         <Heading>Organization</Heading>
         <SelectField
-          label="Organization"
+          label='Organization'
           labelHidden={true}
-          placeholder="Please select"
-          width="300px"
+          placeholder='Please select'
+          width='300px'
           value={organization}
           onChange={(e) => setOrganization(e.target.value)}
         >
-          <option value="Amazon">Amazon</option>
-          <option value="Apple">Apple</option>
-          <option value="Google">Google</option>
-          <option value="Microsoft">Microsoft</option>
-          <option value="Uber">Uber</option>
+          <option value='Amazon'>Amazon</option>
+          <option value='Apple'>Apple</option>
+          <option value='Google'>Google</option>
+          <option value='Microsoft'>Microsoft</option>
+          <option value='Uber'>Uber</option>
         </SelectField>
       </Flex>
-      <Flex alignItems={"center"} justifyContent="space-between">
+      <Flex alignItems={'center'} justifyContent='space-between'>
         <Heading>Region</Heading>
         <SelectField
-          label="Region"
+          label='Region'
           labelHidden={true}
-          placeholder="Please select"
-          width="300px"
+          placeholder='Please select'
+          width='300px'
           value={region}
           onChange={(e) => setRegion(e.target.value)}
         >
-          <option value="Africa">Africa</option>
-          <option value="Asia Pacific">Asia Pacific</option>
-          <option value="North America">North America</option>
-          <option value="South America">South America</option>
-          <option value="Europe">Europe</option>
+          <option value='Africa'>Africa</option>
+          <option value='Asia Pacific'>Asia Pacific</option>
+          <option value='North America'>North America</option>
+          <option value='South America'>South America</option>
+          <option value='Europe'>Europe</option>
         </SelectField>
       </Flex>
       <Button
-        gap="0.2rem"
+        gap='0.2rem'
         isFullWidth={false}
-        variation="primary"
-        alignSelf={"flex-end"}
-        size="small"
+        variation='primary'
+        alignSelf={'flex-end'}
+        size='small'
         onClick={() => handleSave()}
       >
         <IconSave /> Save
@@ -148,20 +147,20 @@ const AlertSettings = ({ user, userInfo, setUserInfo }) => {
     await DataStore.save(
       UserInfo.copyOf(userInfo, (item) => {
         item.alert = alerts;
-      })
+      }),
     );
     const uInfo = await DataStore.query(UserInfo, (u) =>
-      u.email("beginsWith", user.attributes.email)
+      u.email('beginsWith', user.attributes.email),
     );
     setUserInfo(uInfo);
     setShowAlert(true);
   };
 
   return (
-    <Flex padding="30px 30px" width="50%" direction="column">
+    <Flex padding='30px 30px' width='50%' direction='column'>
       {showAlert ? (
         <Alert
-          variation="success"
+          variation='success'
           isDismissible={true}
           onDismiss={() => setShowAlert(false)}
         >
@@ -170,39 +169,39 @@ const AlertSettings = ({ user, userInfo, setUserInfo }) => {
       ) : (
         <></>
       )}
-      <Text alignSelf={"flex-start"} fontStyle="italic">
+      <Text alignSelf={'flex-start'} fontStyle='italic'>
         Recieve email alerts for...
       </Text>
-      <Flex alignItems={"center"} justifyContent="space-between">
+      <Flex alignItems={'center'} justifyContent='space-between'>
         <Heading>Opportunity Posted [Your Region]</Heading>
         <SwitchField
-          size="large"
+          size='large'
           defaultChecked={alerts.op_yr}
-          onChange={() => handleSwitch("op_yr")}
+          onChange={() => handleSwitch('op_yr')}
         />
       </Flex>
-      <Flex alignItems={"center"} justifyContent="space-between">
+      <Flex alignItems={'center'} justifyContent='space-between'>
         <Heading>Opportunity Requested [Your Region]</Heading>
         <SwitchField
-          size="large"
+          size='large'
           defaultChecked={alerts.or_yr}
-          onChange={() => handleSwitch("or_yr")}
+          onChange={() => handleSwitch('or_yr')}
         />
       </Flex>
-      <Flex alignItems={"center"} justifyContent="space-between">
+      <Flex alignItems={'center'} justifyContent='space-between'>
         <Heading>Opportunity Requested [Your Organization]</Heading>
         <SwitchField
-          size="large"
+          size='large'
           defaultChecked={alerts.or_yo}
-          onChange={() => handleSwitch("or_yo")}
+          onChange={() => handleSwitch('or_yo')}
         />
       </Flex>
       <Button
-        gap="0.2rem"
+        gap='0.2rem'
         isFullWidth={false}
-        variation="primary"
-        alignSelf={"flex-end"}
-        size="small"
+        variation='primary'
+        alignSelf={'flex-end'}
+        size='small'
         onClick={() => handleSave()}
       >
         <IconSave /> Save

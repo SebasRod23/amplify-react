@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# MLH Network
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![GitHub top language](https://img.shields.io/github/languages/top/SebasRod23/amplify-react)
+![Lines of code](https://tokei.rs/b1/github/SebasRod23/amplify-react?category=code)
 
-## Available Scripts
+**MLH Network** it's a fellow-exclusive job platform that lets fellows share any opportunities that they may come across. It also helps alumni share new openings in their organization with other fellows. They can also make requests to other fellows who currently work at their target organizations and/or regions. All communication is handled by email, so fellows don't have to keep checking the application for new opportunities that they might be interested in.
 
-In the project directory, you can run:
+## Dependencies
 
-### `yarn start`
+To run the app locally it is necessary that your **IAM user** is authorized, so contact us if you need assistance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation and use
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1.- Clone the repository
 
-### `yarn test`
+```
+$ git https://github.com/SebasRod23/amplify-react.git
+$ cd amplify-react
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.- Install dependencies
 
-### `yarn build`
+```
+$ yarn install
+$ amplify pull
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3.- To run the development server:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+$ yarn start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies
 
-### `yarn eject`
+- Frontend
+  ![React](https://img.shields.io/badge/-React-black?style=flat-square&logo=react)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Backend
+  ![Amplify](https://img.shields.io/badge/-AWS_Amplify-black?style=flat-square&logo=awsamplify)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Database
+  ![GraphQL](https://img.shields.io/badge/-GraphQL-black?style=flat-square&logo=graphql)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Creators
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/SebasRod23"><img src="https://avatars.githubusercontent.com/u/42384931" width="100px;" alt=""/><br /><sub><b>Sebastián Rodríguez Galarza</b></sub></a></td>
+    <td align="center"><a href="https://github.com/flozender"><img src="https://avatars.githubusercontent.com/u/40818234" width="100px;" alt=""/><br /><sub><b>Tayeeb Hasan
+</b></sub></a></td>
+  </tr>
+</table>
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Code published under [MIT License](https://github.com/SebasRod23/amplify-react/blob/main/LICENSE).

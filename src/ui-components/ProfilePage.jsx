@@ -10,6 +10,7 @@ import {
   TabItem,
   SelectField,
   IconSave,
+  SwitchField,
 } from "@aws-amplify/ui-react";
 
 const Profile = ({ user }) => {
@@ -20,7 +21,9 @@ const Profile = ({ user }) => {
         <TabItem title="Profile">
           <ProfileSettings user={user} />
         </TabItem>
-        <TabItem title="Alerts">Tab 2 Content</TabItem>
+        <TabItem title="Alerts">
+          <AlertSettings user={user} />
+        </TabItem>
       </Tabs>
     </View>
   );
@@ -67,6 +70,28 @@ const ProfileSettings = ({ user }) => {
       >
         <IconSave /> Save
       </Button>
+    </Flex>
+  );
+};
+
+const AlertSettings = ({ user }) => {
+  return (
+    <Flex padding="30px 30px" width="50%" direction="column">
+      <Text alignSelf={"flex-start"} fontStyle="italic">
+        Recieve email alerts for...
+      </Text>
+      <Flex alignItems={"center"} justifyContent="space-between">
+        <Heading>Opportunity Posted [Your Region]</Heading>
+        <SwitchField size="large" />
+      </Flex>
+      <Flex alignItems={"center"} justifyContent="space-between">
+        <Heading>Opportunity Requested [Your Region]</Heading>
+        <SwitchField size="large" />
+      </Flex>
+      <Flex alignItems={"center"} justifyContent="space-between">
+        <Heading>Opportunity Requested [Your Organization]</Heading>
+        <SwitchField size="large" />
+      </Flex>
     </Flex>
   );
 };

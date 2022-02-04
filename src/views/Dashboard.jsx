@@ -5,9 +5,21 @@ import { DataStore } from '@aws-amplify/datastore';
 
 import Post from '../ui-components/Post';
 import { Post as iPost } from '../models';
+import FormModal from '../ui-components/FormModal';
 
 const Dashboard = () => {
+  const [open, setOpen] = useState(false);
+  const [type, setType] = useState('req' | 'post');
   const [posts, setPosts] = useState([]);
+
+  const handleOpen = (type) => {
+    setOpen(true);
+    setType(type);
+  };
+  const handleClose = (type) => {
+    setOpen(false);
+    setType(type);
+  };
 
   useEffect(() => {
     DataStore.query(iPost, Predicates.ALL, {
@@ -26,8 +38,14 @@ const Dashboard = () => {
       >
         <Heading level={5}>Recently posted:</Heading>
         <Flex alignItems='center' gap='5%'>
-          <Button size='small'>Request</Button>
-          <Button variation='primary' size='small'>
+          <Button size='small' onClick={() => handleOpen('req')}>
+            Request
+          </Button>
+          <Button
+            variation='primary'
+            size='small'
+            onClick={() => handleOpen('post')}
+          >
             <Flex alignItems='center' justifyContent='center'>
               <IconAdd fontSize='1.25rem' />
               New
@@ -47,6 +65,8 @@ const Dashboard = () => {
           />
         );
       })}
+
+      <FormModal open={open} handleClose={handleClose} type={type} />
     </View>
   );
 };

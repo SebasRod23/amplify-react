@@ -4,6 +4,7 @@ import "@aws-amplify/ui-react/styles.css";
 
 import "./App.css";
 import awsExports from "./aws-exports";
+import AppBar from "./ui-components/AppBar";
 
 Amplify.configure(awsExports);
 
@@ -12,10 +13,14 @@ const App = () => {
     <div className="App">
       <Authenticator>
         {({ signOut, user }) => (
-          <main>
+          <>
+            <AppBar />
+            {/*
+            TODO: Add router for dashboard and profile views
             <h1>Hello, {user.attributes.email}</h1>
             <button onClick={signOut}>Sign out</button>
-          </main>
+            */}
+          </>
         )}
       </Authenticator>
     </div>

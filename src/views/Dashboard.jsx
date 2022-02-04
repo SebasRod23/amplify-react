@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Predicates, SortDirection } from 'aws-amplify';
 import { Button, Flex, Heading, IconAdd, View } from '@aws-amplify/ui-react';
+import { DataStore } from '@aws-amplify/datastore';
+
 import Post from '../ui-components/Post';
+import { Post as iPost } from '../models';
 
 const Dashboard = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    DataStore.query(iPost, Predicates.ALL, {
+      sort: (s) => s.createdAt(SortDirection.DESCENDING),
+    }).then((models) => {
+      setPosts([...models]);
+    });
+  }, []);
+
   return (
     <View padding='3%'>
       <Flex
@@ -21,6 +35,18 @@ const Dashboard = () => {
           </Button>
         </Flex>
       </Flex>
+
+      {posts.map((post) => {
+        return (
+          <Post
+            org={post.organization}
+            pos={post.position}
+            reg={post.region}
+            hasVisaSponsor={post.hasVisaSponsor}
+            key={post.id}
+          />
+        );
+      })}
     </View>
   );
 };
